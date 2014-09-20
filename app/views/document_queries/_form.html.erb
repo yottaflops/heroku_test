@@ -1,0 +1,21 @@
+<%= form_for(@document_query) do |f| %>
+  <% if @document_query.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@document_query.errors.count, "error") %> prohibited this document_query from being saved:</h2>
+
+      <ul>
+      <% @document_query.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :term %><br>
+    <%= f.text_field :term %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
