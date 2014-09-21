@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920231811) do
-
-  create_table "document_queries", force: true do |t|
-    t.string   "term"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140921030007) do
 
   create_table "documents", force: true do |t|
     t.string   "document_number"
     t.text     "excerpts"
     t.string   "html_url"
-    t.string   "type"
+    t.string   "document_type"
     t.text     "title"
-    t.integer  "document_query_id"
+    t.integer  "register_search_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "register_searches", force: true do |t|
+    t.string   "term"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

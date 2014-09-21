@@ -1,0 +1,17 @@
+<%= form_for(@register_search) do |f| %>
+  <% if @register_search.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@register_search.errors.count, "error") %> prohibited this register_search from being saved:</h2>
+
+      <ul>
+      <% @register_search.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,3 +1,3 @@
 class Document < ActiveRecord::Base
-	belongs_to :document_query
+	belongs_to :register_search
 end

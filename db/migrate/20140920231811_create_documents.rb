@@ -4,9 +4,9 @@ class CreateDocuments < ActiveRecord::Migration
       t.string :document_number
       t.text :excerpts
       t.string :html_url
-      t.string :type
+      t.string :document_type
       t.text :title
-      t.integer :document_query_id
+      t.integer :register_search_id
 
       t.timestamps
     end

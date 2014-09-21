@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+  root 'register_searches#index'
+  
+  resources :register_searches
+
+    
   resources :documents
 
-  resources :document_queries
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

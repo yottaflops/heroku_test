@@ -23,24 +23,31 @@ class DocumentsController < ApplicationController
 
   # POST /documents
   # POST /documents.json
- def create
-    query = DocumentQuery.find_by(document_query_params) || NCode.new(document_query_params)
-    article = FederalRegister::Article.search(:conditions => {:term => query.term})
-    results = article.results
-    toys = Array.new
-    results.each do |result|
-      toy = Toy.new
+  def create
+    term = register_search_params
 
-      toy.document_number = result.document_number
-      toy.html_url        = result.html_url
-      toy.type            = result.type
-      toy.title           = result.title
-      toy.save
+    if query = RegisterSearch.find_by(term: term) 
+      documents = query.documents
+    else 
+      query = RegisterSearch.create(term: term)
+      article = FederalRegister::Article.search(:conditions => {:term => query.term})
+      results = article.results
+      documents = Array.new
+      results.each do |result|
+        document = query.documents.new
 
-      toys << toy
+        document.document_number = result.document_number
+        document.html_url        = result.html_url
+        document.document_type            = result.type
+        document.title           = result.title
+        document.save
+
+        documents << document
+      end
     end
 
-    render json: toys, status: 201
+
+    render json: documents, status: 201
   end
 
   # PATCH/PUT /documents/1
@@ -78,7 +85,7 @@ class DocumentsController < ApplicationController
       params.require[:document]
     end
 
-    def document_query_params
-      params.require(:document_query).permit(:term)
+    def register_search_params
+      params.require(:register_search)
     end
 end
