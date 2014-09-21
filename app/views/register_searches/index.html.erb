@@ -1,18 +1,22 @@
-<!-- <form class="search-type">
-	<input type="radio" name="xxx" value="x" checked> Text Search
-	<input type="radio" name="xxx" value="y">Search by Code
+<form class="search-type">
+  <input type="radio" name="search-option" value="text" class="text"checked> Text Search
+  <br>
+  <input type="radio" name="search-option" value="code" class="code">Search By NAICS code
 </form>
-<div class="text-search">
-	<%#= form_tag('/documents', method: :post ) do  %>
-	  <%#= text_field_tag :register_search %>
-	  <div class="actions">
-	    <%= submit_tag %>
-	  </div>
-	<%# end %>
-</div> -->
 
-Search By NAICS code
-<%= form_tag('/documents', method: :post, class: "code-search" ) do  %>
-	<%= select_tag :register_search, options_for_select(@codes.collect{ |code, name| ["#{code}  :  #{name}", code] }) %>
-	<%= submit_tag value = "Submit Search"%>
-<% end %>
+<div class="search-options">
+	<div class="text-search js-search-option">
+		<%= form_tag('/documents', method: :post ) do  %>
+			<%= text_field_tag :register_search %>
+			<div class="actions">
+				<%= submit_tag %>
+			</div>
+		<% end %>
+	</div>
+	<div class="code-search js-search-option">
+		<%= form_tag('/documents', method: :post) do  %>
+			<%= select_tag :register_search, options_for_select(@codes.collect{ |code, name| ["#{code}  :  #{name}", code] }) %>
+			<%= submit_tag value = "Submit Search"%>
+		<% end %>
+	</div>
+</div>
