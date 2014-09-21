@@ -26,14 +26,15 @@ class DocumentsController < ApplicationController
   def create
     term = register_search_params
     if (query = RegisterSearch.find_by(term: term)) && query.present?
-      documents = query.documents
-      render json: documents, status: 200
+      @documents = query.documents
+      # render json: documents, status: 200
     else 
       @query = RegisterSearch.create(term: term)
       results = get_articles(@query.term).results
-      documents = build_docs(results)
-      render json: documents, status: 201
+      @documents = build_docs(results)
+      # render json: documents, status: 201
     end
+    render :index
   end
 
   # PATCH/PUT /documents/1
