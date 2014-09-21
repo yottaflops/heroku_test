@@ -5,18 +5,18 @@
 </form>
 
 <div class="search-options">
-	<div class="text-search js-search-option">
-		<%= form_tag('/documents', method: :post ) do  %>
-			<%= text_field_tag :register_search %>
-			<div class="actions">
-				<%= submit_tag %>
-			</div>
-		<% end %>
-	</div>
-	<div class="code-search js-search-option">
-		<%= form_tag('/documents', method: :post) do  %>
-			<%= select_tag :register_search, options_for_select(@codes.collect{ |code, name| ["#{code}  :  #{name}", code] }) %>
-			<%= submit_tag value = "Submit Search"%>
-		<% end %>
-	</div>
+  <div class="text-search js-search-option">
+    <%= form_tag('/documents', method: :post ) do  %>
+      <%= text_field_tag :register_search %>
+      <div class="actions">
+        <%= submit_tag %>
+      </div>
+    <% end %>
+  </div>
+  <div class="code-search js-search-option">
+    <%= form_tag('/documents', method: :post) do  %>
+      <%= select_tag :register_search, options_for_select(@codes.collect{ |code, name| ["#{code}  :  #{name}", code] }) %>
+      <%= submit_tag value = "Submit Search"%>
+    <% end %>
+  </div>
 </div>
