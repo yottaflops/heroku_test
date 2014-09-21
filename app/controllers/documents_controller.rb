@@ -25,29 +25,15 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     term = register_search_params
-
-    if query = RegisterSearch.find_by(term: term) 
+    if (query = RegisterSearch.find_by(term: term)) && query.present?
       documents = query.documents
+      render json: documents, status: 200
     else 
-      query = RegisterSearch.create(term: term)
-      article = FederalRegister::Article.search(:conditions => {:term => query.term})
-      results = article.results
-      documents = Array.new
-      results.each do |result|
-        document = query.documents.new
-
-        document.document_number = result.document_number
-        document.html_url        = result.html_url
-        document.document_type            = result.type
-        document.title           = result.title
-        document.save
-
-        documents << document
-      end
+      @query = RegisterSearch.create(term: term)
+      results = get_articles(@query.term).results
+      documents = build_docs(results)
+      render json: documents, status: 201
     end
-
-
-    render json: documents, status: 201
   end
 
   # PATCH/PUT /documents/1
@@ -75,6 +61,25 @@ class DocumentsController < ApplicationController
   end
 
   private
+    def get_articles(term)
+      FederalRegister::Article.search(:conditions => {:term => term})
+    end
+
+    def build_docs(results)
+      documents = Array.new
+      results.each do |result|
+        document = @query.documents.new({
+          document_number: result.document_number,
+          html_url:        result.html_url,
+          document_type:   result.type,
+          title:           result.title
+        })
+        document.save
+        documents << document
+      end
+      documents
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
