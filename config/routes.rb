@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   root 'register_searches#index'
   
-  resources :register_searches
+  resources :register_searches, only: [:index]
 
     
-  resources :documents
+  resources :documents, only: [:create]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
