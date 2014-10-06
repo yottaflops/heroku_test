@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
   root 'register_searches#index'
-  
-  resources :register_searches, only: [:index]
 
-    
+  devise_for :users
+
+  resources :register_searches, only: [:index]
   resources :documents, only: [:create]
 
 
