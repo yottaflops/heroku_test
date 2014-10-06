@@ -6,7 +6,7 @@ gem 'federal_register'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
-# Use SCSS for stylesheets  
+# Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -38,10 +38,13 @@ gem 'jbuilder', '~> 2.0'
 
 group :production do
   gem 'pg', '0.15.1'
-  gem 'rails_12factor', '0.0.2' 
+  gem 'rails_12factor', '0.0.2'
 end
 
 group :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-activemodel-mocks'
+  gem 'factory_girl_rails', '~> 4.2.1'
 end
 
 group :development, :test do
