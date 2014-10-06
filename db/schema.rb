@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140921030007) do
+ActiveRecord::Schema.define(version: 20141006012929) do
 
   create_table "documents", force: true do |t|
     t.string   "document_number"
@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 20140921030007) do
 
   create_table "register_searches", force: true do |t|
     t.string   "term"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.integer  "zipcode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
