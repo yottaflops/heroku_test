@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'register_searches#index'
   
   resources :register_searches, only: [:index]
