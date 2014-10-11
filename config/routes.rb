@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   root 'register_searches#index'
 
-  devise_for :users
+  devise_for :users, :skip => [:sessions]
+
+  as :user do
+    get 'signin' => 'devise/sessions#new', :as => :new_user_session
+    post 'signin' => 'devise/sessions#create', :as => :user_session
+    match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session,
+      :via => Devise.mappings[:user].sign_out_via
+  end
 
   resources :register_searches, only: [:index]
   resources :documents, only: [:create]
