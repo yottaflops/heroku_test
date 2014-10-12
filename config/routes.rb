@@ -1,13 +1,50 @@
 Rails.application.routes.draw do
   root 'register_searches#index'
 
-  devise_for :users, :skip => [:sessions]
+  # devise_for :users, :skip => [:sessions] do
+  #   post 'users' => 'devise/registrations#create', :as => :create_user
+  #   get 'users/new' => 'devise/registrations#new', :as => :new_user
+  #   get 'users/edit' => 'devise/registrations#edit', :as => :edit_user
+  # end
 
-  as :user do
-    get 'signin' => 'devise/sessions#new', :as => :new_user_session
-    post 'signin' => 'devise/sessions#create', :as => :user_session
-    match 'signout' => 'devise/sessions#destroy', :as => :destroy_user_session,
-      :via => Devise.mappings[:user].sign_out_via
+  # as :user do
+  #   get 'login' => 'devise/sessions#new', :as => :login
+  #   post 'login' => 'devise/sessions#create', :as => :create_session
+  #   match 'logout' => 'devise/sessions#destroy', :as => :logout,
+  #     :via => Devise.mappings[:user].sign_out_via
+  # end
+
+  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations]
+  as :person do
+    # session handling
+    get     '/login'  => 'devise/sessions#new'
+    post    '/login'  => 'devise/sessions#create',  as: 'create_session'
+    delete  '/logout' => 'devise/sessions#destroy'
+
+    # joining
+    get   '/signup' => 'devise/registrations#new'
+    post  '/signup' => 'devise/registrations#create', as: 'create_user'
+
+    scope '/account' do
+      # password reset
+      get   '/reset-password'        => 'devise/passwords#new',    as: 'new_password'
+      put   '/reset-password'        => 'devise/passwords#update', as: 'update_password'
+      post  '/reset-password'        => 'devise/passwords#create', as: 'create_password'
+      get   '/reset-password/change' => 'devise/passwords#edit',   as: 'edit_password'
+
+      # confirmation
+      get   'confirm'        => 'devise/confirmations#show', as: 'confirm_user'
+      post  '/confirm'        => 'devise/confirmations#create', as: 'create_confirmation'
+      get   '/confirm/resend' => 'devise/confirmations#new',    as: 'resend_confirmation'
+
+      # settings & cancellation
+      get 'cancel'   => 'devise/registrations#cancel', as: 'cancel_user'
+      get 'settings' => 'devise/registrations#edit', as: 'edit_user'
+      put 'settings' => 'devise/registrations#update', as: 'update_user'
+
+      # account deletion
+      delete '' => 'devise/registrations#destroy'
+    end
   end
 
   resources :register_searches, only: [:index]

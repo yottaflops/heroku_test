@@ -1,8 +1,32 @@
-body{
+@import "mixins";
+
+body {
   margin: 0;
 
   .header {
     height: 80px;
-    background: #0f9fb4;
+    background: $main-blue;
+
+    nav {
+      background: $main-blue;
+      padding: 15px 30px;
+
+      font-size: $font-larger;
+      border: none;
+
+      .dropdown-toggle {
+        color: white !important;
+      }
+      .dropdown-menu {
+        color: black;
+      }
+      .dropdown {
+        &.open {
+          .dropdown-toggle {
+            background: $main-blue
+          }
+        }
+      }
+    }
   }
 }
