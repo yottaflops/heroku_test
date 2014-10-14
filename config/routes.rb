@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'register_searches#index'
+  root 'home#index'
 
   devise_for :users, :skip => [:sessions, :registrations]
 
