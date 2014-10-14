@@ -1,0 +1,38 @@
+@import "mixins";
+
+.header {
+  height: 80px;
+  background: $main-blue;
+  .navbar {
+    padding: 15px 30px;
+    border: none;
+    font-size: $font-larger;
+    background: $main-blue;
+
+    .nav,
+    .nav .open {
+      a {
+        color: white;
+
+        &:hover,
+        &:focus {
+          color: white;
+        }
+      }
+      .dropdown-toggle {
+      }
+      .dropdown-menu {
+        a{
+          color: black !important;
+        }
+      }
+      .dropdown {
+        &.open {
+          .dropdown-toggle {
+            background: $main-blue
+          }
+        }
+      }
+    }
+  }
+}

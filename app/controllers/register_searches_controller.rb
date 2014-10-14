@@ -1,5 +1,6 @@
 class RegisterSearchesController < ApplicationController
   # before_action :set_register_search, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user
 
   # GET /register_searches
   # GET /register_searches.json

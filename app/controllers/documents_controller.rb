@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  # before_action :authenticate_user
 
   # POST /documents
   # POST /documents.json
@@ -7,7 +8,7 @@ class DocumentsController < ApplicationController
     if (query = RegisterSearch.find_by(term: term)) && query.present?
       @documents = query.documents
       # render json: documents, status: 200
-    else 
+    else
       @query = RegisterSearch.create(term: term)
       results = get_articles(@query.term).results
       @documents = build_docs(results)
