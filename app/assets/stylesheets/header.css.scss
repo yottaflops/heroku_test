@@ -1,38 +1,53 @@
 @import "mixins";
 
-.header {
-  height: 80px;
+.navbar-wrapper {
   background: $main-blue;
+
   .navbar {
-    padding: 15px 30px;
-    border: none;
-    font-size: $font-larger;
-    background: $main-blue;
+    height: 80px;
 
-    .nav,
-    .nav .open {
-      a {
-        color: white;
+    .navbar-collapse {
+      padding: 15px;
 
-        &:hover,
-        &:focus {
+      .navbar-nav {
+        &.header {
+          font-size: $font-larger
+        }
+        &.padded-right {
+          padding-right: 30px;
+        }
+        a {
           color: white;
+
+          &:focus,
+          &:hover,
+          &:active {
+            border: none;
+            background: $main-blue;
+            color: white;
+          }
         }
-      }
-      .dropdown-toggle {
-      }
-      .dropdown-menu {
-        a{
-          color: black !important;
-        }
-      }
-      .dropdown {
-        &.open {
+        .dropdown {
           .dropdown-toggle {
-            background: $main-blue
+            &:focus,
+            &:hover,
+            &:active {
+              border: none;
+              background: $main-blue;
+              color: white;
+            }
+          }
+          .dropdown-menu {
+            a {
+              background: white;
+              color: black;
+            }
           }
         }
       }
     }
+  }
+  .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background: $main-blue !important;
   }
 }
