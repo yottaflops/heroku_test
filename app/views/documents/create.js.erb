@@ -1,0 +1,5 @@
+var el = $('.naics-results .content');
+var html = "<%=j render partial: 'document', collection: @documents %>";
+
+$('.naics-results .loader').removeClass('visible');
+el.append(html);

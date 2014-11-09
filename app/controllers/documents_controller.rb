@@ -14,8 +14,6 @@ class DocumentsController < ApplicationController
       @documents = build_docs(results)
       # render json: documents, status: 201
     end
-    #This means views/documents/index.html.erb will be rendered
-    render :index
   end
 
   # GET /documents
