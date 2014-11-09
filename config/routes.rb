@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  root 'home#index'
+  # root 'home#index'
+
+  # constraints(Constraint::Authenticated) do
+  #   root to: 'home#index', as: 'user_root'
+  # end
+
+  root to: 'home_unauthenticated#index'
+
+  # get '*path', to: 'home_unauthenticated#index'
 
   devise_for :users, :skip => [:sessions, :registrations]
 
