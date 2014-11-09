@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    term = register_search_params
+    term = register_search_params[:term]
     if (query = RegisterSearch.find_by(term: term)) && query.present?
       @documents = query.documents
       # render json: documents, status: 200
