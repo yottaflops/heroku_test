@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   # root 'home#index'
 
-  # constraints(Constraint::Authenticated) do
-    # root to: 'home#index', as: 'user_root'
-  # end
+  constraints(Constraint::Authenticated) do
+    root to: 'home#index', as: 'user_root'
+  end
 
   root to: 'home_unauthenticated#index'
 

@@ -1,13 +1,28 @@
-
-<div class="row">
-  <div class="col-lg-8 col-lg-offset-2">
-    <p>Search the Federal Register for legislation and announcements that affect you.</p>
+<div class="home unauthorized">
+  <div class="row title">
+    <div class="col-lg-10 col-lg-offset-1">
+      <h1>
+        Search the Federal Register for legislation and announcements that affect you.
+      </h1>
+      <h3><%= link_to("Create an account", signup_url) %> to save and track your federal register articles</h3>
+    </div>
   </div>
-  <div class="col-lg-4 col-lg-offset-4">
-    <div class="input-group">
-      <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+  <div class="row naics-search">
+    <div class="col-lg-4 col-lg-offset-4">
+      <!-- this could probably be a form for if the controlle gave it a new document -->
+      <%= form_tag('/documents', method: :post ) do  %>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="input-group">
+
+              <%= text_field_tag :register_search, nil, class: 'form-control' %>
+              <span class="input-group-btn">
+                <%= submit_tag "Go!", class: "btn btn-default" %>
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
