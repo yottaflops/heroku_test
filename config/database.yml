@@ -28,23 +28,21 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: fr_development
-  pool: 5
-  username: fruser
-  password: password
+  database: FlamingGong-development
+  username: FlamingGong
+  password:
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: fr_test
-  pool: 5
-  username: fruser
-  password: password
+  database: FlamingGong-test
+  username: FlamingGong
+  password:
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: fr_production
-  pool: 5
-  username: fruser
-  password: password
+  url: <%= ENV['DATABASE_URL'] %>
+  # adapter: postgresql
+  # encoding: unicode
+  # database: FlamingGong-production
+  # username: FlamingGong
+  # password:
